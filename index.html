@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+ <head>
+  <title>Thiết kế from đăng nhập</title>
+  <meta charset="utf-8">
+  <link rel = "stylesheet" href = "css/style.css">
+ </head>
+ <body>
+  <h2 align="center">Menu</h2>
+    
+    <br>
+    <button onclick="addProduct('Trà sữa truyền thống', '20.000 VND', 'assets/images/sua.jpg', 'https://tralocphat.com/pages/cong-thuc-pha-che-tra-sua-truyen-thong')">
+        Thêm trà sữa truyền thống
+    </button>
+
+    <button onclick="addProduct('Trà đào', '17.000 VND', 'assets/images/dao.jpg', 'https://www.huongnghiepaau.com/tra-dao')">
+        Thêm trà đào
+    </button>
+
+    <button onclick="addProduct('Soda nho', '17.000 VND', 'assets/images/nho.jpg', 'https://www.bartender.edu.vn/soda-nho')">
+        Thêm soda nho
+    </button>
+
+    <button onclick="Reset()">
+        Reset
+    </button>
+    <br>
+    <br>
+    <p>Order:</p>
+
+
+    <div class="list-product" id="product-container"></div>
+
+    <script>
+        function addProduct(name, price, imgSource, link) {
+            const container = document.getElementById("product-container");
+
+            const productItem = document.createElement("div");
+            productItem.className = "product-item";
+
+            const productImage = document.createElement("div");
+            productImage.className = "product-image";
+            const imgNode = document.createElement("img");
+            imgNode.src = imgSource;
+            productImage.appendChild(imgNode);
+
+            const productInfo = document.createElement("div");
+            productInfo.className = "product-info";
+
+            const productName = document.createElement("p");
+            productName.textContent = name;
+
+            const productPrice = document.createElement("p");
+            productPrice.textContent = price;
+
+            const productLink = document.createElement("a");
+            productLink.href = link;
+            productLink.textContent = "Xem Chi Tiết";
+
+            productInfo.appendChild(productName);
+            productInfo.appendChild(productPrice);
+            productInfo.appendChild(productLink);
+
+            productItem.appendChild(productImage);
+            productItem.appendChild(productInfo);
+
+            container.appendChild(productItem);
+        }
+        function Reset(){
+            document.getElementById("product-container").innerHTML = "";
+        }
+    </script>
+ </body>
+</html>
