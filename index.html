@@ -1,74 +1,63 @@
 <!DOCTYPE html>
 <html lang="vi">
- <head>
-  <title>Thiết kế from đăng nhập</title>
-  <meta charset="utf-8">
-  <link rel = "stylesheet" href = "css/style.css">
- </head>
- <body>
-  <h2 align="center">Menu</h2>
-    
-    <br>
-    <button onclick="addProduct('Trà sữa truyền thống', '20.000 VND', 'assets/images/sua.jpg', 'https://tralocphat.com/pages/cong-thuc-pha-che-tra-sua-truyen-thong')">
-        Thêm trà sữa truyền thống
-    </button>
+<head>
+    <!--<link rel = "stylesheet" href = "../css/style6.css">--> <!-- Latest compiled and minified CSS --> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"> 
+    <!-- Latest compiled JavaScript --> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Giải hệ phương trình 2 ẩn</title>
+</head>
+<body>
 
-    <button onclick="addProduct('Trà đào', '17.000 VND', 'assets/images/dao.jpg', 'https://www.huongnghiepaau.com/tra-dao')">
-        Thêm trà đào
-    </button>
+    <h2 class="mb-4 text-center">Giải hệ phương trình 2 ẩn</h2>
 
-    <button onclick="addProduct('Soda nho', '17.000 VND', 'assets/images/nho.jpg', 'https://www.bartender.edu.vn/soda-nho')">
-        Thêm soda nho
-    </button>
+    <div class="mb-3">
+        <label>Phương trình 1:</label><br>
+        <input type="number" id="a" class="form-control d-inline w-25"> x +
+        <input type="number" id="b" class="form-control d-inline w-25"> y =
+        <input type="number" id="c" class="form-control d-inline w-25">
+    </div>
 
-    <button onclick="Reset()">
-        Reset
-    </button>
-    <br>
-    <br>
-    <p>Order:</p>
+    <div class="mb-3">
+        <label>Phương trình 2:</label><br>
+        <input type="number" id="d" class="form-control d-inline w-25"> x +
+        <input type="number" id="e" class="form-control d-inline w-25"> y =
+        <input type="number" id="f" class="form-control d-inline w-25">
+    </div>
 
+    <button onclick="giaiHe()" class="btn btn-primary">Giải</button>
 
-    <div class="list-product" id="product-container"></div>
+    <h3 id="ketqua" class="mt-4 text-danger"></h3>
 
     <script>
-        function addProduct(name, price, imgSource, link) {
-            const container = document.getElementById("product-container");
+        function giaiHe() {
+            let a = Number(document.getElementById("a").value);
+            let b = Number(document.getElementById("b").value);
+            let c = Number(document.getElementById("c").value);
+            let d = Number(document.getElementById("d").value);
+            let e = Number(document.getElementById("e").value);
+            let f = Number(document.getElementById("f").value);
 
-            const productItem = document.createElement("div");
-            productItem.className = "product-item";
+            let D = a * e - b * d;
+            let Dx = c * e - b * f;
+            let Dy = a * f - c * d;
 
-            const productImage = document.createElement("div");
-            productImage.className = "product-image";
-            const imgNode = document.createElement("img");
-            imgNode.src = imgSource;
-            productImage.appendChild(imgNode);
+            let ketqua = document.getElementById("ketqua");
 
-            const productInfo = document.createElement("div");
-            productInfo.className = "product-info";
-
-            const productName = document.createElement("p");
-            productName.textContent = name;
-
-            const productPrice = document.createElement("p");
-            productPrice.textContent = price;
-
-            const productLink = document.createElement("a");
-            productLink.href = link;
-            productLink.textContent = "Xem Chi Tiết";
-
-            productInfo.appendChild(productName);
-            productInfo.appendChild(productPrice);
-            productInfo.appendChild(productLink);
-
-            productItem.appendChild(productImage);
-            productItem.appendChild(productInfo);
-
-            container.appendChild(productItem);
-        }
-        function Reset(){
-            document.getElementById("product-container").innerHTML = "";
+            if (D == 0) {
+                if (Dx == 0 && Dy == 0) {
+                    ketqua.innerHTML = "Hệ phương trình vô số nghiệm";
+                } else {
+                    ketqua.innerHTML = "Hệ phương trình vô nghiệm";
+                }
+            } else {
+                let x = Dx / D;
+                let y = Dy / D;
+                ketqua.innerHTML = "Nghiệm: x = " + x + ", y = " + y;
+            }
         }
     </script>
- </body>
+
+</body>
 </html>
